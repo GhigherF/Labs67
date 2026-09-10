@@ -1,0 +1,17 @@
+C:\LABS67\labs67\clouds\1\Client\bin\Debug\net11.0\Client.exe
+C:\LABS67\labs67\clouds\1\Client\bin\Debug\net11.0\Client.deps.json
+C:\LABS67\labs67\clouds\1\Client\bin\Debug\net11.0\Client.runtimeconfig.json
+C:\LABS67\labs67\clouds\1\Client\bin\Debug\net11.0\Client.runtimeconfig.dev.json
+C:\LABS67\labs67\clouds\1\Client\bin\Debug\net11.0\Client.dll
+C:\LABS67\labs67\clouds\1\Client\bin\Debug\net11.0\Client.pdb
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.AssemblyInfoInputs.cache
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.AssemblyInfo.cs
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.csproj.CoreCompileInputs.cache
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.sourcelink.json
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.dll
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\refint\Client.dll
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.pdb
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.genruntimeconfig.cache
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\ref\Client.dll
+C:\LABS67\labs67\clouds\1\Client\obj\Debug\net11.0\Client.csproj.Up2Date

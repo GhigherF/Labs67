@@ -88,11 +88,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\LABS67\\clouds\\1\\Server\\Server.csproj",
+      "projectUniqueName": "C:\\labs67\\labs67\\clouds\\1\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "C:\\LABS67\\clouds\\1\\Server\\Server.csproj",
+      "projectPath": "C:\\labs67\\labs67\\clouds\\1\\Server\\Server.csproj",
       "packagesPath": "C:\\Users\\ghigh\\.nuget\\packages\\",
-      "outputPath": "C:\\LABS67\\clouds\\1\\Server\\obj\\",
+      "outputPath": "C:\\labs67\\labs67\\clouds\\1\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ghigh\\AppData\\Roaming\\NuGet\\NuGet.Config"

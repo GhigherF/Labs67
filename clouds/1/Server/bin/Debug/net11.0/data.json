@@ -2,37 +2,74 @@
   "Hotels": [
     {
       "Id": "11111111-1111-1111-1111-111111111111",
-      "Name": "Гранд Отель",
-      "Address": "ул. Ленина 1"
+      "Name": "\u0413\u0440\u0430\u043D\u0434 \u041E\u0442\u0435\u043B\u044C",
+      "Address": "\u0443\u043B. \u041B\u0435\u043D\u0438\u043D\u0430 1"
     }
   ],
   "Rooms": [
     {
       "Id": "a1b2c3d4-0001-4000-8000-000000000101",
       "HotelId": "11111111-1111-1111-1111-111111111111",
-      "RoomNumber": "101 (Стандарт)",
+      "RoomNumber": "101 (\u0421\u0442\u0430\u043D\u0434\u0430\u0440\u0442)",
       "PricePerNight": 1500.0
     },
     {
       "Id": "a1b2c3d4-0002-4000-8000-000000000102",
       "HotelId": "11111111-1111-1111-1111-111111111111",
-      "RoomNumber": "102 (Люкс)",
+      "RoomNumber": "102 (\u041B\u044E\u043A\u0441)",
       "PricePerNight": 3500.0
     },
     {
       "Id": "a1b2c3d4-0003-4000-8000-000000000103",
       "HotelId": "11111111-1111-1111-1111-111111111111",
-      "RoomNumber": "103 (Президентский)",
+      "RoomNumber": "103 (\u041F\u0440\u0435\u0437\u0438\u0434\u0435\u043D\u0442\u0441\u043A\u0438\u0439)",
       "PricePerNight": 7000.0
     }
   ],
   "Guests": [
     {
       "Id": "22222222-2222-2222-2222-222222222222",
-      "FullName": "Иван Иванов",
+      "FullName": "\u0418\u0432\u0430\u043D \u0418\u0432\u0430\u043D\u043E\u0432",
       "Email": "ivan@example.com"
+    },
+    {
+      "Id": "ef30fd62-1f8c-4be6-ac85-cd439a89fd66",
+      "FullName": "Freddy Fazbear",
+      "Email": ""
     }
   ],
-  "Bookings": [],
-  "Payments": []
+  "Bookings": [
+    {
+      "Id": "d6b4065f-f240-416b-9f97-595fef700f20",
+      "GuestId": "22222222-2222-2222-2222-222222222222",
+      "RoomId": "a1b2c3d4-0001-4000-8000-000000000101",
+      "CheckInDate": "2026-12-12T00:00:00",
+      "CheckOutDate": "2026-12-16T00:00:00",
+      "TotalPrice": 6000.0,
+      "Status": 1
+    },
+    {
+      "Id": "75e0e482-bb54-471b-9a6c-ceda3c17870d",
+      "GuestId": "ef30fd62-1f8c-4be6-ac85-cd439a89fd66",
+      "RoomId": "a1b2c3d4-0001-4000-8000-000000000101",
+      "CheckInDate": "2026-12-24T00:00:00",
+      "CheckOutDate": "2026-12-28T00:00:00",
+      "TotalPrice": 6000.0,
+      "Status": 1
+    }
+  ],
+  "Payments": [
+    {
+      "Id": "20a518f0-3d74-45de-bb76-67adbda077c6",
+      "BookingId": "75e0e482-bb54-471b-9a6c-ceda3c17870d",
+      "Amount": 7000,
+      "PaymentDate": "2026-09-08T16:04:08.9456982Z"
+    },
+    {
+      "Id": "9ebcda35-6551-4cf5-be1c-809044cb9815",
+      "BookingId": "d6b4065f-f240-416b-9f97-595fef700f20",
+      "Amount": 24000,
+      "PaymentDate": "2026-09-08T16:15:20.9755234Z"
+    }
+  ]
 }
