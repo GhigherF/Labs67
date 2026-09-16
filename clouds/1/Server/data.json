@@ -36,6 +36,16 @@
       "Id": "ef30fd62-1f8c-4be6-ac85-cd439a89fd66",
       "FullName": "Freddy Fazbear",
       "Email": ""
+    },
+    {
+      "Id": "72ef675f-2b64-41e6-b4a3-8bacb10917c7",
+      "FullName": "Gg",
+      "Email": ""
+    },
+    {
+      "Id": "4d15c4c7-6c90-474d-9a48-81c03a1b4b57",
+      "FullName": "new",
+      "Email": ""
     }
   ],
   "Bookings": [
@@ -46,7 +56,7 @@
       "CheckInDate": "2026-12-12T00:00:00",
       "CheckOutDate": "2026-12-16T00:00:00",
       "TotalPrice": 6000.0,
-      "Status": 1
+      "Status": 2
     },
     {
       "Id": "75e0e482-bb54-471b-9a6c-ceda3c17870d",
@@ -74,6 +84,15 @@
       "CheckOutDate": "2026-08-13T00:00:00",
       "TotalPrice": 7000.0,
       "Status": 2
+    },
+    {
+      "Id": "733d8865-55a6-4cb8-83af-cd716bd6634b",
+      "GuestId": "4d15c4c7-6c90-474d-9a48-81c03a1b4b57",
+      "RoomId": "a1b2c3d4-0002-4000-8000-000000000102",
+      "CheckInDate": "2026-09-16T00:00:00",
+      "CheckOutDate": "2026-09-18T00:00:00",
+      "TotalPrice": 7000.0,
+      "Status": 0
     }
   ],
   "Payments": [

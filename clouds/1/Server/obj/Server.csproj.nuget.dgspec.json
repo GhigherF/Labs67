@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LABS67\\labs67\\clouds\\1\\server\\Server.csproj": {}
+    "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\LABS67\\labs67\\clouds\\1\\server\\Server.csproj": {
+    "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LABS67\\labs67\\clouds\\1\\server\\Server.csproj",
+        "projectUniqueName": "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\LABS67\\labs67\\clouds\\1\\server\\Server.csproj",
+        "projectPath": "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\ghigh\\.nuget\\packages\\",
-        "outputPath": "C:\\LABS67\\labs67\\clouds\\1\\server\\obj\\",
+        "outputPath": "C:\\LABS67\\labs67\\clouds\\1\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ghigh\\AppData\\Roaming\\NuGet\\NuGet.Config"

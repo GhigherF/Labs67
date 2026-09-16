@@ -131,7 +131,7 @@ namespace HotelBooking
             var guest = new Guest { FullName = fullName, Email = email };
 
             _data.Guests.Add(guest);
-            SaveChanges(); // Сохраняет обновленный список в data.json
+            SaveChanges();  
 
             return guest;
         }
@@ -201,7 +201,6 @@ namespace HotelBooking
                 _data.Bookings.FirstOrDefault(b => b.Id == bookingId)
                 ?? throw new Exception("Бронирование не найдено.");
 
-            // Проверка на повторную оплату
             if (booking.Status == BookingStatus.Paid)
             {
                 throw new Exception(
@@ -220,8 +219,6 @@ namespace HotelBooking
                     $"Недостаточно средств. К оплате: {booking.TotalPrice:C2}, внесено: {amount:C2}"
                 );
             }
-
-            // Расчёт сдачи
             decimal change = amount - booking.TotalPrice;
 
             booking.Status = BookingStatus.Paid;

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Регистрация сервисов
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<BookingService>();
@@ -18,34 +18,26 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// ==========================================
-// 1. ИНФОРМАЦИОННЫЕ ЭНДПОИНТЫ (GET)
-// ==========================================
 
 app.MapGet("/", () => "WOOOHOOO!!!");
 
-// Получить список комнат
 app.MapGet("/api/rooms", ([FromServices] BookingService service) => Results.Ok(service.Data.Rooms));
 
-// Получить список гостей
 app.MapGet(
     "/api/guests",
     ([FromServices] BookingService service) => Results.Ok(service.Data.Guests)
 );
 
-// Получить список бронирований
 app.MapGet(
     "/api/bookings",
     ([FromServices] BookingService service) => Results.Ok(service.Data.Bookings)
 );
 
-// Получить все платежи
 app.MapGet(
     "/api/payments",
     ([FromServices] BookingService service) => Results.Ok(service.Data.Payments)
 );
 
-// Проверка доступности номера
 app.MapGet(
     "/api/check-availability",
     ([FromServices] BookingService service, Guid roomId, DateTime checkIn, DateTime checkOut) =>
@@ -63,11 +55,7 @@ app.MapGet(
     }
 );
 
-// ==========================================
-// 2. ОПЕРАЦИОННЫЕ ЭНДПОИНТЫ (POST)
-// ==========================================
 
-// Добавление нового гостя
 app.MapPost(
     "/api/guests",
     ([FromServices] BookingService service, CreateGuestRequest request) =>
@@ -93,7 +81,6 @@ app.MapPost(
     }
 );
 
-// Создание бронирования
 app.MapPost(
     "/api/bookings",
     ([FromServices] BookingService service, CreateBookingRequest request) =>
@@ -149,7 +136,7 @@ app.MapPost(
                 {
                     Payment = payment,
                     PaymentEvent = paymentEvent,
-                    Change = change > 0 ? change : (decimal?)null, // Поле появится только если есть сдача
+                    Change = change > 0 ? change : (decimal?)null,
                 }
             );
         }
@@ -160,7 +147,6 @@ app.MapPost(
     }
 );
 
-// Отмена бронирования
 app.MapPost(
     "/api/bookings/{id:guid}/cancel",
     ([FromServices] BookingService service, Guid id, CancelBookingRequest request) =>
@@ -177,13 +163,8 @@ app.MapPost(
     }
 );
 
-// Fallback обработчик маршрутов
 app.MapFallback(() => Results.NotFound(new { message = "LoL, WRONG URL" }));
 
 app.Run();
-
-// ==========================================
-// DTO МОДЕЛИ
-// ==========================================
 
 public record CreateGuestRequest(string FullName);

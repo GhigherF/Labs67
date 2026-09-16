@@ -75,9 +75,7 @@ class Program
                     case "0":
                         return;
                     default:
-                        Console.WriteLine(
-                            "[!] Некорректная операция: указан неизвестный пункт меню."
-                        );
+                        Console.WriteLine("Некорректная операция: указан неизвестный пункт меню.");
                         break;
                 }
             }
@@ -90,10 +88,6 @@ class Program
             Console.ReadLine();
         }
     }
-
-    // ==========================================
-    // ТРЕБОВАНИЕ 8: ЦЕНТРАЛИЗОВАННАЯ ОБРАБОТКА ОШИБОК
-    // ==========================================
 
     private static void HandleException(Exception ex, string context = "")
     {
@@ -108,32 +102,30 @@ class Program
                 )
                 {
                     Console.WriteLine(
-                        $"[!] Ошибка: Сервер недоступен или отсутствует сетевое подключение ({context})."
+                        $"Ошибка: Сервер недоступен или отсутствует сетевое подключение ({context})."
                     );
                 }
                 else
                 {
                     Console.WriteLine(
-                        $"[!] Ошибка сетевого взаимодействия HTTP (Статус: {httpEx.StatusCode})."
+                        $"Ошибка сетевого взаимодействия HTTP (Статус: {httpEx.StatusCode})."
                     );
                 }
                 break;
 
             case TaskCanceledException:
-                Console.WriteLine(
-                    $"[!] Ошибка: Превышено время ожидания ответа от сервера (Timeout)."
-                );
+                Console.WriteLine($"Ошибка: Превышено время ожидания ответа от сервера (Timeout).");
                 break;
 
             case FormatException:
                 Console.WriteLine(
-                    $"[!] Некорректные входные данные: неверный формат числа, даты или GUID."
+                    $"Некорректные входные данные: неверный формат числа, даты или GUID."
                 );
                 break;
 
             default:
                 Console.WriteLine(
-                    $"[!] Произошла непредвиденная ошибка ({context}): {targetEx.Message}"
+                    $"Произошла непредвиденная ошибка ({context}): {targetEx.Message}"
                 );
                 break;
         }
@@ -145,21 +137,21 @@ class Program
         {
             case HttpStatusCode.NotFound:
                 Console.WriteLine(
-                    "[!] Ошибка (404): Запрашиваемый объект или эндпоинт не найден на сервере."
+                    "Ошибка (404): Запрашиваемый объект или эндпоинт не найден на сервере."
                 );
                 break;
             case HttpStatusCode.BadRequest:
                 var error = TryReadErrorResponse(response);
                 Console.WriteLine(
-                    $"[!] Ошибка (400 Bad Request): {error ?? "Переданы некорректные входные данные или выполнена недопустимая операция."}"
+                    $"400 Bad Request: {error ?? "Переданы некорректные входные данные или выполнена недопустимая операция."}"
                 );
                 break;
             case HttpStatusCode.InternalServerError:
-                Console.WriteLine("[!] Внутренняя ошибка сервера (500).");
+                Console.WriteLine("Ошибка 500");
                 break;
             default:
                 Console.WriteLine(
-                    $"[!] Ошибка ответа сервера: {(int)response.StatusCode} {response.ReasonPhrase}"
+                    $"Ошибка ответа сервера: {(int)response.StatusCode} {response.ReasonPhrase}"
                 );
                 break;
         }
@@ -178,17 +170,12 @@ class Program
         }
     }
 
-    // ==========================================
-    // ТРЕБОВАНИЕ 9: АВТОМАТИЧЕСКОЕ ТЕСТИРОВАНИЕ
-    // ==========================================
-
     private static void RunAutomatedTests()
     {
         Console.WriteLine("\n==========================================");
-        Console.WriteLine("   ЗАПУСК АВТОМАТИЧЕСКИХ ТЕСТОВ SYSTEM");
+        Console.WriteLine("   ЗАПУСК АВТОМАТИЧЕСКИХ ТЕСТОВ");
         Console.WriteLine("==========================================");
 
-        // Тест 1: Успешный сценарий
         Console.WriteLine("\n[ТЕСТ 1] Успешный сценарий: Запрос списка номеров");
         try
         {
@@ -209,7 +196,6 @@ class Program
             );
         }
 
-        // Тест 2: Неизвестная операция / Отсутствующий маршрут
         Console.WriteLine(
             "\n[ТЕСТ 2] Неизвестная операция: Запрос к несуществующему URL (api/unknown-endpoint)"
         );
@@ -234,7 +220,6 @@ class Program
             Console.WriteLine($" -> РЕЗУЛЬТАТ: ПРОВАЛ ({ex.Message})");
         }
 
-        // Тест 3: Некорректные данные
         Console.WriteLine("\n[ТЕСТ 3] Некорректные данные: Попытка создания гостя с пустым именем");
         try
         {
@@ -256,14 +241,13 @@ class Program
             Console.WriteLine($" -> РЕЗУЛЬТАТ: ИСКЛЮЧЕНИЕ ({ex.Message})");
         }
 
-        // Тест 4: Недоступный сервер
         Console.WriteLine(
-            "\n[ТЕСТ 4] Недоступный сервер: Запрос к заблокированному/несуществующему порту (http://localhost:59999/)"
+            "\n[ТЕСТ 4] Недоступный сервер: Запрос к заблокированному/несуществующему порту (http://localhost:5230/)"
         );
         try
         {
             using var invalidClient = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
-            var response = invalidClient.GetAsync("http://localhost:59999/api/rooms").Result;
+            var response = invalidClient.GetAsync("http://localhost:5230/api/rooms").Result;
             Console.WriteLine(" -> РЕЗУЛЬТАТ: ПРОВАЛ (Запрос почему-то выполнился)");
         }
         catch (Exception ex)
@@ -278,10 +262,6 @@ class Program
         Console.WriteLine("   ТЕСТИРОВАНИЕ ЗАВЕРШЕНО");
         Console.WriteLine("==========================================");
     }
-
-    // ==========================================
-    // ВСПОМОГАТЕЛЬНЫЕ МЕТОДЫ
-    // ==========================================
 
     private static List<Room>? GetRooms()
     {
@@ -347,10 +327,6 @@ class Program
         );
     }
 
-    // ==========================================
-    // ОСНОВНЫЕ МЕТОДЫ ВЗАИМОДЕЙСТВИЯ
-    // ==========================================
-
     private static void ShowRooms()
     {
         Console.WriteLine("\n СПИСОК НОМЕРОВ:");
@@ -399,7 +375,7 @@ class Program
 
         if (string.IsNullOrWhiteSpace(fullName))
         {
-            Console.WriteLine("[!] Некорректные входные данные: ФИО не может быть пустым.");
+            Console.WriteLine("Некорректные входные данные: ФИО не может быть пустым.");
             return;
         }
 
@@ -411,7 +387,7 @@ class Program
             if (response.IsSuccessStatusCode)
             {
                 var createdGuest = response.Content.ReadFromJsonAsync<Guest>(jsonOptions).Result;
-                Console.WriteLine($"[✓] Гость успешно добавлен!");
+                Console.WriteLine($"Гость успешно добавлен!");
                 if (createdGuest != null)
                 {
                     Console.WriteLine($"ID: {createdGuest.Id} | ФИО: {createdGuest.FullName}");
@@ -440,21 +416,21 @@ class Program
         var room = FindRoomByNumber(rooms, roomInput);
         if (room == null)
         {
-            Console.WriteLine($"[!] Отсутствующий объект: Номер '{roomInput}' не найден.");
+            Console.WriteLine($"Отсутствующий объект: Номер '{roomInput}' не найден.");
             return;
         }
 
         Console.Write("Дата заезда (ГГГГ-ММ-ДД): ");
         if (!DateTime.TryParse(Console.ReadLine(), out var checkIn))
         {
-            Console.WriteLine("[!] Некорректные входные данные: некорректный формат даты заезда.");
+            Console.WriteLine("Некорректные входные данные: некорректный формат даты заезда.");
             return;
         }
 
         Console.Write("Дата выезда (ГГГГ-ММ-ДД): ");
         if (!DateTime.TryParse(Console.ReadLine(), out var checkOut))
         {
-            Console.WriteLine("[!] Некорректные входные данные: некорректный формат даты выезда.");
+            Console.WriteLine("Некорректные входные данные: некорректный формат даты выезда.");
             return;
         }
 
@@ -471,11 +447,11 @@ class Program
                     .Result;
                 if (result != null && result.IsAvailable)
                 {
-                    Console.WriteLine($"[✓] Номер {room.RoomNumber} СВОБОДЕН на указанные даты.");
+                    Console.WriteLine($"Номер {room.RoomNumber} СВОБОДЕН на указанные даты.");
                 }
                 else
                 {
-                    Console.WriteLine($"[X] Номер {room.RoomNumber} ЗАНЯТ на указанные даты.");
+                    Console.WriteLine($" Номер {room.RoomNumber} ЗАНЯТ на указанные даты.");
                 }
             }
             else
@@ -503,7 +479,7 @@ class Program
 
         if (room == null)
         {
-            Console.WriteLine($"[!] Отсутствующий объект: Номер '{roomInput}' не найден.");
+            Console.WriteLine($" Отсутствующий объект: Номер '{roomInput}' не найден.");
             return;
         }
 
@@ -513,7 +489,7 @@ class Program
 
         if (guest == null)
         {
-            Console.WriteLine($"[!] Отсутствующий объект: Гость '{guestInput}' не найден.");
+            Console.WriteLine($"Отсутствующий объект: Гость '{guestInput}' не найден.");
             return;
         }
 
@@ -527,7 +503,7 @@ class Program
         Console.Write("Дата выезда (ГГГГ-ММ-ДД): ");
         if (!DateTime.TryParse(Console.ReadLine(), out var checkOut))
         {
-            Console.WriteLine("[!] Некорректные входные данные: формат даты.");
+            Console.WriteLine(" Некорректные входные данные: формат даты.");
             return;
         }
 
@@ -541,7 +517,7 @@ class Program
                 var result = response
                     .Content.ReadFromJsonAsync<CreateBookingResponse>(jsonOptions)
                     .Result;
-                Console.WriteLine($"[✓] Бронирование успешно создано!");
+                Console.WriteLine($"Бронирование успешно создано!");
                 if (result?.Booking != null)
                 {
                     Console.WriteLine($"ID бронирования: {result.Booking.Id}");
@@ -612,7 +588,7 @@ class Program
         Console.Write("Введите GUID бронирования для оплаты: ");
         if (!Guid.TryParse(Console.ReadLine(), out var bookingId))
         {
-            Console.WriteLine("[!] Некорректные входные данные: неверный формат GUID.");
+            Console.WriteLine("Некорректные входные данные: неверный формат GUID.");
             return;
         }
 
@@ -635,7 +611,7 @@ class Program
                 var result = response
                     .Content.ReadFromJsonAsync<PayBookingResponse>(jsonOptions)
                     .Result;
-                Console.WriteLine("[✓] Оплата прошла успешно!");
+                Console.WriteLine("Оплата прошла успешно!");
 
                 if (result?.Change is decimal change && change > 0)
                 {
@@ -659,7 +635,7 @@ class Program
         Console.Write("Введите GUID бронирования для отмены: ");
         if (!Guid.TryParse(Console.ReadLine(), out var bookingId))
         {
-            Console.WriteLine("[!] Некорректные входные данные: неверный формат GUID.");
+            Console.WriteLine("Некорректные входные данные: неверный формат GUID.");
             return;
         }
 
@@ -678,7 +654,7 @@ class Program
                 var result = response
                     .Content.ReadFromJsonAsync<BookingCancelledEvent>(jsonOptions)
                     .Result;
-                Console.WriteLine("[✓] Бронирование успешно отменено!");
+                Console.WriteLine(" Бронирование успешно отменено!");
                 if (result != null)
                 {
                     Console.WriteLine($"Причина: {result.Reason}");
@@ -704,10 +680,6 @@ class Program
             _ => $"[{status}]",
         };
 }
-
-// ==========================================
-// МОДЕЛИ И DTO
-// ==========================================
 
 public enum BookingStatus
 {

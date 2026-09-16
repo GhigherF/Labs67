@@ -36,6 +36,11 @@
       "Id": "ef30fd62-1f8c-4be6-ac85-cd439a89fd66",
       "FullName": "Freddy Fazbear",
       "Email": ""
+    },
+    {
+      "Id": "72ef675f-2b64-41e6-b4a3-8bacb10917c7",
+      "FullName": "Gg",
+      "Email": ""
     }
   ],
   "Bookings": [
@@ -56,6 +61,24 @@
       "CheckOutDate": "2026-12-28T00:00:00",
       "TotalPrice": 6000.0,
       "Status": 1
+    },
+    {
+      "Id": "ee4e5a3d-bc42-4816-acd9-fa9d2327ecf7",
+      "GuestId": "22222222-2222-2222-2222-222222222222",
+      "RoomId": "a1b2c3d4-0003-4000-8000-000000000103",
+      "CheckInDate": "2026-10-20T00:00:00",
+      "CheckOutDate": "2027-11-24T00:00:00",
+      "TotalPrice": 2800000.0,
+      "Status": 1
+    },
+    {
+      "Id": "282475f3-1f2b-481b-b418-d693e28b135e",
+      "GuestId": "ef30fd62-1f8c-4be6-ac85-cd439a89fd66",
+      "RoomId": "a1b2c3d4-0002-4000-8000-000000000102",
+      "CheckInDate": "2026-08-11T00:00:00",
+      "CheckOutDate": "2026-08-13T00:00:00",
+      "TotalPrice": 7000.0,
+      "Status": 2
     }
   ],
   "Payments": [
@@ -70,6 +93,18 @@
       "BookingId": "d6b4065f-f240-416b-9f97-595fef700f20",
       "Amount": 24000,
       "PaymentDate": "2026-09-08T16:15:20.9755234Z"
+    },
+    {
+      "Id": "888ec144-f281-4950-bd39-e1690c235baf",
+      "BookingId": "ee4e5a3d-bc42-4816-acd9-fa9d2327ecf7",
+      "Amount": 3000000,
+      "PaymentDate": "2026-09-08T16:23:23.1733776Z"
+    },
+    {
+      "Id": "c91b33e9-2c20-4e9f-b2c5-166f0715a1b1",
+      "BookingId": "282475f3-1f2b-481b-b418-d693e28b135e",
+      "Amount": 8000,
+      "PaymentDate": "2026-09-08T16:30:02.1902982Z"
     }
   ]
 }
