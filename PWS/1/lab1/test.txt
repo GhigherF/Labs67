@@ -1,0 +1,35 @@
+--1
+GET http://localhost:8081/stack
+
+POST http://localhost:8081/stack
+{
+  "result": 10
+}
+
+PUT http://localhost:8081/stack?ADD=5
+
+PUT http://localhost:8081/stack?ADD=7
+
+GET http://localhost:8081/stack
+
+DELETE http://localhost:8081/stack
+
+Затем удалить Cookies для localhost
+
+--2
+GET http://localhost:8082/stack
+
+POST http://localhost:8082/stack
+{
+  "result": 100
+}
+
+PUT http://localhost:8082/stack?ADD=25
+
+PUT http://localhost:8082/stack?ADD=15
+
+GET http://localhost:8082/stack
+
+DELETE http://localhost:8082/stack
+
+Затем удалить Cookies для localhost

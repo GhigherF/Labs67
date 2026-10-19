@@ -4,24 +4,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
+
+[assembly: InternalsVisibleTo("Client.Tests")]
 
 namespace Client;
 
-class Program
+public class Program
 {
-    private static readonly HttpClient httpClient = new HttpClient
+    public static readonly HttpClient httpClient = new HttpClient
     {
         BaseAddress = new Uri("http://localhost:5230/"),
         Timeout = TimeSpan.FromSeconds(3),
     };
 
-    private static readonly JsonSerializerOptions jsonOptions = new JsonSerializerOptions
+    public static readonly JsonSerializerOptions jsonOptions = new JsonSerializerOptions
     {
         PropertyNameCaseInsensitive = true,
     };
 
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         while (true)
         {
@@ -34,7 +37,6 @@ class Program
             Console.WriteLine("6. Посмотреть список бронирований");
             Console.WriteLine("7. Оплатить бронирование");
             Console.WriteLine("8. Отменить бронирование");
-            Console.WriteLine("9. Запустить авто-тестирование (Требование 9)");
             Console.WriteLine("0. Выход");
             Console.WriteLine("================================");
             Console.Write("Выберите действие: ");
@@ -69,9 +71,6 @@ class Program
                     case "8":
                         CancelBooking();
                         break;
-                    case "9":
-                        RunAutomatedTests();
-                        break;
                     case "0":
                         return;
                     default:
@@ -89,7 +88,7 @@ class Program
         }
     }
 
-    private static void HandleException(Exception ex, string context = "")
+    public static void HandleException(Exception ex, string context = "")
     {
         var targetEx = ex is AggregateException agg ? agg.InnerException ?? ex : ex;
 
@@ -131,7 +130,7 @@ class Program
         }
     }
 
-    private static void HandleHttpResponseError(HttpResponseMessage response)
+    public static void HandleHttpResponseError(HttpResponseMessage response)
     {
         switch (response.StatusCode)
         {
@@ -147,7 +146,7 @@ class Program
                 );
                 break;
             case HttpStatusCode.InternalServerError:
-                Console.WriteLine("Ошибка 500");
+                Console.WriteLine("Ошибка 500: Внутренняя ошибка сервера.");
                 break;
             default:
                 Console.WriteLine(
@@ -157,7 +156,7 @@ class Program
         }
     }
 
-    private static string? TryReadErrorResponse(HttpResponseMessage response)
+    internal static string? TryReadErrorResponse(HttpResponseMessage response)
     {
         try
         {
@@ -170,100 +169,7 @@ class Program
         }
     }
 
-    private static void RunAutomatedTests()
-    {
-        Console.WriteLine("\n==========================================");
-        Console.WriteLine("   ЗАПУСК АВТОМАТИЧЕСКИХ ТЕСТОВ");
-        Console.WriteLine("==========================================");
-
-        Console.WriteLine("\n[ТЕСТ 1] Успешный сценарий: Запрос списка номеров");
-        try
-        {
-            var response = httpClient.GetAsync("api/rooms").Result;
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(" -> РЕЗУЛЬТАТ: УСПЕШНО (200 OK, данные получены)");
-            }
-            else
-            {
-                Console.WriteLine($" -> РЕЗУЛЬТАТ: ПРОВАЛ (Сервер вернул {response.StatusCode})");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(
-                $" -> РЕЗУЛЬТАТ: ПРОВАЛ ({ex.InnerException?.Message ?? ex.Message})"
-            );
-        }
-
-        Console.WriteLine(
-            "\n[ТЕСТ 2] Неизвестная операция: Запрос к несуществующему URL (api/unknown-endpoint)"
-        );
-        try
-        {
-            var response = httpClient.GetAsync("api/unknown-endpoint").Result;
-            if (response.StatusCode == HttpStatusCode.NotFound)
-            {
-                Console.WriteLine(
-                    " -> РЕЗУЛЬТАТ: УСПЕШНО (Ожидаемая ошибка 404 Not Found корректно обработана)"
-                );
-            }
-            else
-            {
-                Console.WriteLine(
-                    $" -> РЕЗУЛЬТАТ: ПРОВАЛ (Получен неожиданный статус {response.StatusCode})"
-                );
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($" -> РЕЗУЛЬТАТ: ПРОВАЛ ({ex.Message})");
-        }
-
-        Console.WriteLine("\n[ТЕСТ 3] Некорректные данные: Попытка создания гостя с пустым именем");
-        try
-        {
-            var dto = new CreateGuestRequest("");
-            var response = httpClient.PostAsJsonAsync("api/guests", dto).Result;
-            if (response.StatusCode == HttpStatusCode.BadRequest || !response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(
-                    $" -> РЕЗУЛЬТАТ: УСПЕШНО (Сервер вернул статус {response.StatusCode} в ответ на некорректный ввод)"
-                );
-            }
-            else
-            {
-                Console.WriteLine(" -> РЕЗУЛЬТАТ: ПРОВАЛ (Сервер принял пустые данные)");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($" -> РЕЗУЛЬТАТ: ИСКЛЮЧЕНИЕ ({ex.Message})");
-        }
-
-        Console.WriteLine(
-            "\n[ТЕСТ 4] Недоступный сервер: Запрос к заблокированному/несуществующему порту (http://localhost:5230/)"
-        );
-        try
-        {
-            using var invalidClient = new HttpClient { Timeout = TimeSpan.FromSeconds(2) };
-            var response = invalidClient.GetAsync("http://localhost:5230/api/rooms").Result;
-            Console.WriteLine(" -> РЕЗУЛЬТАТ: ПРОВАЛ (Запрос почему-то выполнился)");
-        }
-        catch (Exception ex)
-        {
-            var inner = ex is AggregateException agg ? agg.InnerException : ex;
-            Console.WriteLine(
-                $" -> РЕЗУЛЬТАТ: УСПЕШНО (Перехвачена ошибка недоступности сервера: {inner?.Message})"
-            );
-        }
-
-        Console.WriteLine("\n==========================================");
-        Console.WriteLine("   ТЕСТИРОВАНИЕ ЗАВЕРШЕНО");
-        Console.WriteLine("==========================================");
-    }
-
-    private static List<Room>? GetRooms()
+    internal static List<Room>? GetRooms()
     {
         try
         {
@@ -282,7 +188,7 @@ class Program
         }
     }
 
-    private static List<Guest>? GetGuests()
+    internal static List<Guest>? GetGuests()
     {
         try
         {
@@ -301,7 +207,7 @@ class Program
         }
     }
 
-    private static Room? FindRoomByNumber(IEnumerable<Room> rooms, string inputNumber)
+    internal static Room? FindRoomByNumber(IEnumerable<Room> rooms, string inputNumber)
     {
         var cleanInput = inputNumber.Trim();
         if (string.IsNullOrWhiteSpace(cleanInput))
@@ -315,7 +221,7 @@ class Program
         );
     }
 
-    private static Guest? FindGuestByNameOrIndex(IEnumerable<Guest> guests, string input)
+    internal static Guest? FindGuestByNameOrIndex(IEnumerable<Guest> guests, string input)
     {
         var clean = input.Trim();
         if (string.IsNullOrWhiteSpace(clean))
@@ -327,7 +233,7 @@ class Program
         );
     }
 
-    private static void ShowRooms()
+    internal static void ShowRooms()
     {
         Console.WriteLine("\n СПИСОК НОМЕРОВ:");
         Console.WriteLine("----------------------------------------------------------------------");
@@ -347,7 +253,7 @@ class Program
         }
     }
 
-    private static void ShowGuests()
+    internal static void ShowGuests()
     {
         Console.WriteLine("\n СПИСОК ГОСТЕЙ:");
         Console.WriteLine("----------------------------------------------------------------------");
@@ -367,7 +273,7 @@ class Program
         }
     }
 
-    private static void CreateGuest()
+    internal static void CreateGuest()
     {
         Console.WriteLine("\n ДОБАВЛЕНИЕ НОВОГО ГОСТЯ:");
         Console.Write("Введите ФИО гостя: ");
@@ -404,7 +310,7 @@ class Program
         }
     }
 
-    private static void CheckAvailability()
+    internal static void CheckAvailability()
     {
         var rooms = GetRooms();
         if (rooms == null || rooms.Count == 0)
@@ -451,7 +357,7 @@ class Program
                 }
                 else
                 {
-                    Console.WriteLine($" Номер {room.RoomNumber} ЗАНЯТ на указанные даты.");
+                    Console.WriteLine($"Номер {room.RoomNumber} ЗАНЯТ на указанные даты.");
                 }
             }
             else
@@ -465,7 +371,7 @@ class Program
         }
     }
 
-    private static void CreateBooking()
+    internal static void CreateBooking()
     {
         var rooms = GetRooms();
         var guests = GetGuests();
@@ -479,7 +385,7 @@ class Program
 
         if (room == null)
         {
-            Console.WriteLine($" Отсутствующий объект: Номер '{roomInput}' не найден.");
+            Console.WriteLine($"Отсутствующий объект: Номер '{roomInput}' не найден.");
             return;
         }
 
@@ -496,14 +402,14 @@ class Program
         Console.Write("Дата заезда (ГГГГ-ММ-ДД): ");
         if (!DateTime.TryParse(Console.ReadLine(), out var checkIn))
         {
-            Console.WriteLine("[!] Некорректные входные данные: формат даты.");
+            Console.WriteLine("Некорректные входные данные: формат даты.");
             return;
         }
 
         Console.Write("Дата выезда (ГГГГ-ММ-ДД): ");
         if (!DateTime.TryParse(Console.ReadLine(), out var checkOut))
         {
-            Console.WriteLine(" Некорректные входные данные: формат даты.");
+            Console.WriteLine("Некорректные входные данные: формат даты.");
             return;
         }
 
@@ -535,7 +441,7 @@ class Program
         }
     }
 
-    private static void ShowBookings()
+    internal static void ShowBookings()
     {
         Console.WriteLine("\n СПИСОК БРОНИРОВАНИЙ:");
         Console.WriteLine(
@@ -582,7 +488,7 @@ class Program
         }
     }
 
-    private static void PayBooking()
+    internal static void PayBooking()
     {
         Console.WriteLine("\n ОПЛАТА БРОНИРОВАНИЯ:");
         Console.Write("Введите GUID бронирования для оплаты: ");
@@ -595,9 +501,7 @@ class Program
         Console.Write("Введите сумму оплаты: ");
         if (!decimal.TryParse(Console.ReadLine(), out var amount))
         {
-            Console.WriteLine(
-                "[!] Некорректные входные данные: некорректное числовое значение суммы."
-            );
+            Console.WriteLine("Некорректные входные данные: некорректное числовое значение суммы.");
             return;
         }
 
@@ -629,7 +533,7 @@ class Program
         }
     }
 
-    private static void CancelBooking()
+    internal static void CancelBooking()
     {
         Console.WriteLine("\n ОТМЕНА БРОНИРОВАНИЯ:");
         Console.Write("Введите GUID бронирования для отмены: ");
@@ -654,7 +558,7 @@ class Program
                 var result = response
                     .Content.ReadFromJsonAsync<BookingCancelledEvent>(jsonOptions)
                     .Result;
-                Console.WriteLine(" Бронирование успешно отменено!");
+                Console.WriteLine("Бронирование успешно отменено!");
                 if (result != null)
                 {
                     Console.WriteLine($"Причина: {result.Reason}");
@@ -671,7 +575,7 @@ class Program
         }
     }
 
-    private static string FormatStatus(BookingStatus status) =>
+    internal static string FormatStatus(BookingStatus status) =>
         status switch
         {
             BookingStatus.Created => "[Создано]",

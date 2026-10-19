@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  ws02-node1:
+    build:
+      context: ./WS01-02
+    hostname: node-1
+
+  ws02-node2:
+    build:
+      context: ./WS01-02
+    hostname: node-2
+
+  gateway-rr:
+    image: nginx:alpine
+    ports:
+      - "8082:80"
+    volumes:
+      - ./nginx-roundrobin.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ws02-node1
+      - ws02-node2

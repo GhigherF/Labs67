@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  ws01-node1:
+    build:
+      context: ./WS01-01
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  ws01-node2:
+    build:
+      context: ./WS01-01
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+
+  gateway-sticky:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx-sticky.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ws01-node1
+      - ws01-node2
