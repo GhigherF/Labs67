@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT">
+  <diagram id="decomposition-a0" name="Декомпозиция A0">
+    <mxGraphModel dx="1338" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-2" parent="1" style="whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;align=center;verticalAlign=middle;" value="A0.1&#xa;Учёт абонентов и поиск данных" vertex="1">
+          <mxGeometry height="90" width="180" x="450" y="265" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-3" parent="1" style="whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;align=center;verticalAlign=middle;" value="A0.2&#xa;Регистрация обращения" vertex="1">
+          <mxGeometry height="90" width="180" x="640" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-4" parent="1" style="whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;align=center;verticalAlign=middle;" value="A0.3&#xa;Обработка тикета и изменение статуса" vertex="1">
+          <mxGeometry height="90" width="180" x="810" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-5" parent="1" style="whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;align=center;verticalAlign=middle;" value="A0.4&#xa;История обработки и отчётность" vertex="1">
+          <mxGeometry height="90" width="180" x="990" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-6" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=right;verticalAlign=middle;" value="Данные абонента, номер договора, контактные данные" vertex="1">
+          <mxGeometry height="60" width="210" x="140" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-7" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Тема, описание, категория и приоритет" vertex="1">
+          <mxGeometry height="60" width="210" x="510" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-8" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Регламент обработки обращений" vertex="1">
+          <mxGeometry height="45" width="180" x="450" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-9" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Правила разграничения доступа" vertex="1">
+          <mxGeometry height="45" width="180" x="740" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-10" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Справочник категорий и приоритетов" vertex="1">
+          <mxGeometry height="45" width="180" x="855" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-11" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Оператор технической поддержки" vertex="1">
+          <mxGeometry height="45" width="180" x="450" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-12" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Сервер приложения и база данных" vertex="1">
+          <mxGeometry height="45" width="180" x="500" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-13" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=center;verticalAlign=middle;" value="Администратор системы" vertex="1">
+          <mxGeometry height="45" width="180" x="990" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-14" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=left;verticalAlign=middle;" value="История обработки обращений" vertex="1">
+          <mxGeometry height="45" width="170" x="1310" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-15" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=left;verticalAlign=middle;" value="Сводные отчёты" vertex="1">
+          <mxGeometry height="45" width="170" x="995" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-16" parent="1" style="text;html=1;whiteSpace=wrap;fillColor=#ffffff;fontColor=#000000;align=left;verticalAlign=middle;" value="Статистика работы операторов" vertex="1">
+          <mxGeometry height="45" width="170" x="1310" y="635" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-17" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-18" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-19" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-20" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-21" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-22" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-23" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-24" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-25" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-3" value="Данные абонента">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-26" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-4" value="Зарегистрированный тикет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-27" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-5" value="Результаты обработки">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-28" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-29" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yXIuSq9VzuC-R97LRPQd-30" edge="1" parent="1" source="yXIuSq9VzuC-R97LRPQd-5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=classic;html=1;strokeColor=#000000;defaultLabelBackgroundColor=page;" target="yXIuSq9VzuC-R97LRPQd-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

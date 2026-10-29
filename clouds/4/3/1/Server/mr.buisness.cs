@@ -108,7 +108,7 @@ namespace HotelBooking
         private const bool UseTransactions = true;
 
         // Искусственная ошибка между изменением статуса и созданием платежа.
-        private const bool InjectPaymentError = false;
+        private const bool InjectPaymentError = true;
 
         private readonly string _connectionString;
         private readonly ILogger<BookingService> _logger;
@@ -497,11 +497,6 @@ namespace HotelBooking
                         command.ExecuteNonQuery();
                     }
 
-                    // Эксперимент:
-                    // При UseTransactions = true раскомментируй Commit.
-                    // При UseTransactions = false транзакции нет, запрос
-                    // INSERT фиксируется SQLite самостоятельно.
-
                     // if (UseTransactions)
                     //     transaction!.Commit();
 
@@ -532,9 +527,6 @@ namespace HotelBooking
                 {
                     if (UseTransactions && transaction is not null)
                     {
-                        // Раскомментируй для отката при ошибке.
-                        // transaction.Rollback();
-
                         transaction.Rollback();
                     }
 
@@ -659,8 +651,6 @@ namespace HotelBooking
 
                 if (UseTransactions)
                 {
-                    // Можно закомментировать для демонстрации незавершённой
-                    // транзакции: при Dispose она будет отменена.
                     transaction!.Commit();
                 }
 
@@ -677,8 +667,6 @@ namespace HotelBooking
             {
                 if (UseTransactions && transaction is not null)
                 {
-                    // Закомментируй, чтобы увидеть поведение при Dispose
-                    // незавершённой транзакции.
                     transaction.Rollback();
                 }
 
@@ -727,7 +715,6 @@ namespace HotelBooking
             {
                 if (UseTransactions && transaction is not null)
                 {
-                    // transaction.Rollback();
                     transaction.Rollback();
                 }
 

@@ -1,0 +1,11 @@
+@jsonrpc_HostAddress = http://localhost:5167
+
+GET {{jsonrpc_HostAddress}}/openapi/v1.json
+Accept: application/json
+
+###
+
+GET {{jsonrpc_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

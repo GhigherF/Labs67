@@ -1,0 +1,94 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="58GxbBu0SNB3V67gO1SH">
+    <mxGraphModel dx="928" dy="548" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Управление обращениями абонентов интернет-провайдера" vertex="1">
+          <mxGeometry height="120" width="230" x="380" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-4" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="240.3" y="320" as="sourcePoint" />
+            <mxPoint x="377.99999999999994" y="320.67999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-5" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Данные абонентов" vertex="1">
+          <mxGeometry height="30" width="130" x="250" y="293" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-6" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="238.3" y="277" as="sourcePoint" />
+            <mxPoint x="375.99999999999994" y="277.67999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-7" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Обращения о неисправностях" vertex="1">
+          <mxGeometry height="40" width="130" x="248" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-8" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="490.67999999999995" y="102.3" as="sourcePoint" />
+            <mxPoint x="490" y="239.99999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-9" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="600.68" y="102.30000000000001" as="sourcePoint" />
+            <mxPoint x="600" y="239.99999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-10" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;flipV=1;legacyAnchorPoints=0;flipH=1;direction=west;" value="Регламенты обслуживания" vertex="1">
+          <mxGeometry height="40" width="90" x="300" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-11" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="390.67999999999995" y="102.3" as="sourcePoint" />
+            <mxPoint x="390" y="239.99999999999994" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-12" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;flipV=1;legacyAnchorPoints=0;flipH=1;direction=west;whiteSpace=wrap;" value="Правила обработки заявок" vertex="1">
+          <mxGeometry height="80" width="70" x="415" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-13" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;html=1;flipV=1;legacyAnchorPoints=0;flipH=1;direction=west;whiteSpace=wrap;" value="Политика защиты персональных данных" vertex="1">
+          <mxGeometry height="80" width="90" x="510" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-15" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="612" y="330" as="sourcePoint" />
+            <mxPoint x="749.6999999999999" y="330.67999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-16" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Статистика и отчёты" vertex="1">
+          <mxGeometry height="30" width="130" x="621.7" y="303" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-17" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="610" y="287" as="sourcePoint" />
+            <mxPoint x="747.6999999999999" y="287.67999999999995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-18" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="Зарегистрированные и обработанные тикеты" vertex="1">
+          <mxGeometry height="53" width="130" x="621.7" y="233.5" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-19" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="554.5" y="497.70000000000095" as="sourcePoint" />
+            <mxPoint x="555.18" y="360.000000000001" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-20" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;flipV=0;legacyAnchorPoints=0;" value="Статистика и отчёты" vertex="1">
+          <mxGeometry height="30" width="90" x="460" y="401.5" as="geometry" />
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-21" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;defaultLabelBackgroundColor=page;entryX=-0.01;entryY=0.589;entryDx=0;entryDy=0;entryPerimeter=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="441.7" y="497.70000000000067" as="sourcePoint" />
+            <mxPoint x="442.37999999999994" y="360.00000000000074" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TIoLMIdXGkLVpzkJ-Yu2-22" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;flipV=0;legacyAnchorPoints=0;" value="Зарегистрированные и обработанные тикеты" vertex="1">
+          <mxGeometry height="53" width="130" x="311.70000000000005" y="390" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

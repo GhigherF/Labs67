@@ -1,0 +1,2 @@
+obj\Debug\net11.0/Calculator.cs \
+obj\Debug\net11.0/CalculatorGrpc.cs: ../../aspServer/temp/2/Protos/calculator.proto

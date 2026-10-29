@@ -1,0 +1,63 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="udKNp1RgIfBgoMBo7dZZ">
+    <mxGraphModel dx="1081" dy="685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-1" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="" vertex="1">
+          <mxGeometry height="148" width="366" x="160" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-2" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;User interface&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;React.js&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="301" y="186" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-3" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Times New Roman;fontSize=14;" value="Presenation layer" vertex="1">
+          <mxGeometry height="26" width="117" x="284.5" y="139" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-4" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;fontFamily=Times New Roman;fontSize=14;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="598" y="428" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-5" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="" vertex="1">
+          <mxGeometry height="236" width="366" x="160" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-6" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.572;entryY=0.209;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-7" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Application&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Node.js&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="90" x="298" y="369" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-8" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Times New Roman;fontSize=14;" value="Buisness layer" vertex="1">
+          <mxGeometry height="26" width="117" x="284.5" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-9" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Handlers&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="90" x="182" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-10" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Buisness Entity&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="90" x="297" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-11" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Services&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="90" x="412" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-12" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="" vertex="1">
+          <mxGeometry height="236" width="246" x="600" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-13" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Data access&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;PostgreSQL&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="58" width="90" x="678" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-14" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Times New Roman;fontSize=14;" value="Data layer" vertex="1">
+          <mxGeometry height="26" width="117" x="664.5" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-15" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.501;entryY=0.058;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-16" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.169;exitY=1.054;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=65;entryDy=14;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7_J0hqM6bgKZyVjcxVeG-17" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.675;exitY=1.034;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=14;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
