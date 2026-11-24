@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "mfBWY6iCZvk=",
+  "success": true,
+  "projectFilePath": "C:\\LABS67\\labs67\\clouds\\5\\1\\Server\\Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ghigh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\11.0.0-preview.7.26381.103\\microsoft.aspnetcore.openapi.11.0.0-preview.7.26381.103.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\microsoft.data.sqlite\\10.0.13\\microsoft.data.sqlite.10.0.13.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.13\\microsoft.data.sqlite.core.10.0.13.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\microsoft.openapi\\3.9.0\\microsoft.openapi.3.9.0.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.13\\sqlitepclraw.bundle_e_sqlite3.2.1.13.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\sqlitepclraw.core\\2.1.13\\sqlitepclraw.core.2.1.13.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.13\\sqlitepclraw.lib.e_sqlite3.2.1.13.nupkg.sha512",
+    "C:\\Users\\ghigh\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.13\\sqlitepclraw.provider.e_sqlite3.2.1.13.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Произошла ошибка при получении данных уязвимости пакета: Не удалось загрузить индекс службы для источника https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\LABS67\\labs67\\clouds\\5\\1\\Server\\Server.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\LABS67\\labs67\\clouds\\5\\1\\Server\\Server.csproj",
+      "targetGraphs": []
+    }
+  ]
+}

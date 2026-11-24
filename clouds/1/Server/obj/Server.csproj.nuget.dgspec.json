@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj": {}
+    "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Server\\Server.csproj": {}
   },
   "projects": {
-    "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj": {
+    "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\LABS67\\labs67\\clouds\\1\\Server\\Server.csproj",
+        "projectPath": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\ghigh\\.nuget\\packages\\",
-        "outputPath": "C:\\LABS67\\labs67\\clouds\\1\\Server\\obj\\",
+        "outputPath": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ghigh\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,6 +49,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[11.0.0-preview.7.26381.103, )"
+            },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.13, )"
             }
           },
           "imports": [

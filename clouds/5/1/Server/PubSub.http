@@ -1,0 +1,116 @@
+@Server_HostAddress = http://localhost:5230
+
+GET {{Server_HostAddress}}/api/brokers
+Accept: application/json
+
+###
+
+GET {{Server_HostAddress}}/api/subscribers
+Accept: application/json
+
+###
+
+GET {{Server_HostAddress}}/api/events/subscriptions
+Accept: application/json
+
+###
+
+POST {{Server_HostAddress}}/api/subscribers
+Content-Type: application/json
+
+{
+  "name": "PostmanAudit",
+  "eventTypes": ["GuestCreated", "BookingCancelled"]
+}
+
+###
+
+POST {{Server_HostAddress}}/api/subscribers/Logger/fail-next
+Content-Type: application/json
+
+{
+  "attempts": 2
+}
+
+###
+
+POST {{Server_HostAddress}}/api/guests
+Content-Type: application/json
+
+{
+  "fullName": "PubSub test guest",
+  "email": "pubsub@example.com"
+}
+
+###
+
+GET {{Server_HostAddress}}/api/events/deliveries
+Accept: application/json
+
+###
+
+GET {{Server_HostAddress}}/api/events/received
+Accept: application/json
+
+###
+
+GET {{Server_HostAddress}}/api/analytics
+Accept: application/json
+
+###
+
+PUT {{Server_HostAddress}}/api/subscribers/NotificationService/availability
+Content-Type: application/json
+
+{
+  "available": false
+}
+
+###
+
+POST {{Server_HostAddress}}/api/guests
+Content-Type: application/json
+
+{
+  "fullName": "Unavailable subscriber test",
+  "email": "subscriber-offline@example.com"
+}
+
+###
+
+PUT {{Server_HostAddress}}/api/subscribers/NotificationService/availability
+Content-Type: application/json
+
+{
+  "available": true
+}
+
+###
+
+POST {{Server_HostAddress}}/api/brokers/broker-1/availability
+Content-Type: application/json
+
+{
+  "available": false
+}
+
+###
+
+POST {{Server_HostAddress}}/api/guests
+Content-Type: application/json
+
+{
+  "fullName": "Broker failover test",
+  "email": "failover@example.com"
+}
+
+###
+
+POST {{Server_HostAddress}}/api/brokers/broker-1/availability
+Content-Type: application/json
+
+{
+  "available": true
+}
+
+###

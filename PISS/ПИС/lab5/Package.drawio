@@ -1,60 +1,29 @@
-<mxfile host="app.diagrams.net">
-  <diagram name="Страница-1" id="udKNp1RgIfBgoMBo7dZZ">
-    <mxGraphModel dx="1081" dy="685" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" modified="2026-10-29T13:45:00.000Z" agent="Copilot" version="24.7.17" type="device">
+  <diagram id="packages" name="Packages">
+    <mxGraphModel dx="688" dy="434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="688" pageHeight="434" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-1" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="" vertex="1">
-          <mxGeometry height="148" width="366" x="160" y="120" as="geometry" />
+        <mxCell id="header" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#17365D;strokeColor=#17365D;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="0" y="0" width="688" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-2" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;User interface&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;React.js&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="60" width="120" x="301" y="186" as="geometry" />
+        <mxCell id="title" value="РЎР»РѕРё РєР»РёРµРЅС‚-СЃРµСЂРІРµСЂРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ" style="text;html=1;align=center;verticalAlign=middle;fontStyle=1;fontSize=18;fontFamily=Arial;fontColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="10" y="8" width="668" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-3" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Times New Roman;fontSize=14;" value="Presenation layer" vertex="1">
-          <mxGeometry height="26" width="117" x="284.5" y="139" as="geometry" />
+        <mxCell id="presentation" value="PRESENTATION LAYER&lt;br&gt;React.js&lt;br&gt;Р’РµР±-РёРЅС‚РµСЂС„РµР№СЃ РѕРїРµСЂР°С‚РѕСЂР°&lt;br&gt;РљР°СЂС‚РѕС‡РєРё Р°Р±РѕРЅРµРЅС‚РѕРІ Рё С‚РёРєРµС‚С‹" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#DCE6F1;swimlaneFillColor=#FFFFFF;strokeColor=#4472C4;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="15" y="85" width="205" height="285" as="geometry" />
         </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-4" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;fontFamily=Times New Roman;fontSize=14;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="598" y="428" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="business" value="BUSINESS LAYER&lt;br&gt;Node.js REST API&lt;br&gt;РђРІС‚РѕСЂРёР·Р°С†РёСЏ Рё RBAC&lt;br&gt;РЎРµСЂРІРёСЃ С‚РёРєРµС‚РѕРІ Рё РѕС‚С‡РµС‚РѕРІ" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#DCE6F1;swimlaneFillColor=#FFFFFF;strokeColor=#4472C4;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="241" y="85" width="205" height="285" as="geometry" />
         </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-5" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="" vertex="1">
-          <mxGeometry height="236" width="366" x="160" y="310" as="geometry" />
+        <mxCell id="data" value="DATA LAYER&lt;br&gt;PostgreSQL&lt;br&gt;Users, Subscribers&lt;br&gt;Tickets, Categories&lt;br&gt;TicketComments" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#DCE6F1;swimlaneFillColor=#FFFFFF;strokeColor=#4472C4;fontStyle=1;fontFamily=Arial;" vertex="1" parent="1">
+          <mxGeometry x="467" y="85" width="205" height="285" as="geometry" />
         </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-6" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.572;entryY=0.209;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-10">
+        <mxCell id="e0" value="HTTPS / JSON" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#52677F;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;" edge="1" parent="1" source="presentation" target="business">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-7" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Application&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Node.js&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="58" width="90" x="298" y="369" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-8" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Times New Roman;fontSize=14;" value="Buisness layer" vertex="1">
-          <mxGeometry height="26" width="117" x="284.5" y="332" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-9" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;Handlers&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="58" width="90" x="182" y="465" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-10" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Buisness Entity&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="58" width="90" x="297" y="465" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-11" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Services&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="58" width="90" x="412" y="465" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-12" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="" vertex="1">
-          <mxGeometry height="236" width="246" x="600" y="316" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-13" parent="1" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;" value="&lt;div&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Data access&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-weight: 400;&quot;&gt;PostgreSQL&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="58" width="90" x="678" y="405" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-14" parent="1" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;fontFamily=Times New Roman;fontSize=14;" value="Data layer" vertex="1">
-          <mxGeometry height="26" width="117" x="664.5" y="340" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-15" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.501;entryY=0.058;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-5">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-16" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.169;exitY=1.054;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=65;entryDy=14;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-9">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="7_J0hqM6bgKZyVjcxVeG-17" edge="1" parent="1" source="7_J0hqM6bgKZyVjcxVeG-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.675;exitY=1.034;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=14;entryPerimeter=0;dashed=1;fontFamily=Times New Roman;fontSize=14;" target="7_J0hqM6bgKZyVjcxVeG-11">
+        <mxCell id="e1" value="SQL / ORM" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#52677F;strokeWidth=2;endArrow=block;endFill=1;fontFamily=Arial;" edge="1" parent="1" source="business" target="data">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

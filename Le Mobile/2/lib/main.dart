@@ -109,14 +109,14 @@ class _CarouselState extends State<Carousel> {
       "location": "Bali, Indonesia",
       "rating": 4.8,
       "price": 25.99,
-      "image": "assets/hans-hotel.jpg",
+      "image": "assets/tropics.jpg",
     },
     {
       "name": "Ocean View Resort",
       "location": "Maldives",
       "rating": 4.7,
       "price": 35.99,
-      "image": "assets/hans-hotel.jpg",
+      "image": "assets/beach.jpg",
     },
   ];
 
@@ -148,8 +148,8 @@ class _CarouselState extends State<Carousel> {
           final String image = hotel["image"] as String;
 
           return GestureDetector(
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              final result = await Navigator.push<int>(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Page2(
@@ -158,9 +158,34 @@ class _CarouselState extends State<Carousel> {
                     rating: rating,
                     price: price,
                     image: image,
+                    selectedIndex: index,
                   ),
                 ),
               );
+
+              if (!mounted) return;
+
+              if (result != null) {
+                setState(() {
+                  currentIndex = result;
+                });
+
+                _pageController.animateToPage(
+                  result,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      'Получен результат из Page2: индекс = $result, '
+                      'отель = ${hotels[result]["name"]}',
+                    ),
+                    duration: const Duration(seconds: 3),
+                  ),
+                );
+              }
             },
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 25),
@@ -407,6 +432,7 @@ class Page2 extends StatelessWidget {
   final double rating;
   final double price;
   final String image;
+  final int selectedIndex;
 
   const Page2({
     super.key,
@@ -415,6 +441,7 @@ class Page2 extends StatelessWidget {
     required this.rating,
     required this.price,
     required this.image,
+    required this.selectedIndex,
   });
 
   @override
@@ -435,6 +462,7 @@ class Page2 extends StatelessWidget {
                   topPadding: topPadding,
                   image: image,
                   price: price,
+                  selectedIndex: selectedIndex,
                 ),
                 const SizedBox(height: 14),
                 const PageIndicators(),
@@ -456,9 +484,9 @@ class Page2 extends StatelessWidget {
               ],
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.bottomCenter,
-            child: BottomBookingBar(),
+            child: BottomBookingBar(hotelName: name, price: price),
           ),
         ],
       ),
@@ -470,12 +498,14 @@ class HotelHeaderCard extends StatelessWidget {
   final double topPadding;
   final String image;
   final double price;
+  final int selectedIndex;
 
   const HotelHeaderCard({
     super.key,
     required this.topPadding,
     required this.image,
     required this.price,
+    required this.selectedIndex,
   });
 
   @override
@@ -501,7 +531,7 @@ class HotelHeaderCard extends StatelessWidget {
               children: [
                 _buildCircleButton(
                   icon: Icons.chevron_left,
-                  onTap: () => Navigator.maybePop(context),
+                  onTap: () => Navigator.pop(context, selectedIndex),
                 ),
                 _buildCircleButton(
                   icon: Icons.favorite,
@@ -808,7 +838,14 @@ class GallerySection extends StatelessWidget {
 }
 
 class BottomBookingBar extends StatelessWidget {
-  const BottomBookingBar({super.key});
+  final String hotelName;
+  final double price;
+
+  const BottomBookingBar({
+    super.key,
+    required this.hotelName,
+    required this.price,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -837,7 +874,15 @@ class BottomBookingBar extends StatelessWidget {
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          BookingPage(hotelName: hotelName, price: price),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1E2022),
                   elevation: 0,
@@ -858,6 +903,108 @@ class BottomBookingBar extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class BookingPage extends StatelessWidget {
+  final String hotelName;
+  final double price;
+
+  const BookingPage({super.key, required this.hotelName, required this.price});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF2F6F9),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFF2F6F9),
+        elevation: 0,
+        title: const Text(
+          'Booking',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20),
+            const Text(
+              'Your reservation',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 25),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(24),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Hotel',
+                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    hotelName,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Price per night',
+                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '\$${price.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 56,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1E2022),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                child: const Text(
+                  'Confirm booking and go home',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+          ],
         ),
       ),
     );
@@ -899,6 +1046,20 @@ class Page1 extends StatelessWidget {
             ),
           ],
         ),
+        actions: [
+          IconButton(
+            tooltip: 'Инструменты устройства',
+            icon: const Icon(Icons.devices_other_rounded),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const DeviceToolsPage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -965,6 +1126,384 @@ class Page1 extends StatelessWidget {
               ],
             ),
             const BottomMenu(),
+          ],
+        ),
+      ),
+
+      bottomNavigationBar: const WifiSSIDIndicator(),
+    );
+  }
+}
+
+class DeviceToolsPage extends StatefulWidget {
+  const DeviceToolsPage({super.key});
+
+  @override
+  State<DeviceToolsPage> createState() => _DeviceToolsPageState();
+}
+
+class _DeviceToolsPageState extends State<DeviceToolsPage> {
+  static const _deviceActions = MethodChannel('device_actions');
+  static const _batteryChannel = MethodChannel('battery_channel');
+
+  final _latitudeController = TextEditingController(text: '37.4219983');
+  final _longitudeController = TextEditingController(text: '-122.084');
+  Uint8List? _photoBytes;
+  String _batteryLevel = 'Загрузка...';
+  bool _isLoadingBattery = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBatteryLevel();
+  }
+
+  @override
+  void dispose() {
+    _latitudeController.dispose();
+    _longitudeController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _loadBatteryLevel() async {
+    if (_isLoadingBattery) return;
+
+    setState(() {
+      _isLoadingBattery = true;
+    });
+
+    try {
+      final level = await _batteryChannel.invokeMethod<int>('getBatteryLevel');
+      if (!mounted) return;
+      setState(() {
+        _batteryLevel = level == null ? 'Недоступно' : '$level%';
+      });
+    } on PlatformException catch (error) {
+      if (!mounted) return;
+      setState(() {
+        _batteryLevel = error.message ?? 'Ошибка получения заряда';
+      });
+    } on MissingPluginException {
+      if (!mounted) return;
+      setState(() {
+        _batteryLevel = 'Канал батареи недоступен';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoadingBattery = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _openMap() async {
+    final latitude = double.tryParse(_latitudeController.text.trim());
+    final longitude = double.tryParse(_longitudeController.text.trim());
+
+    if (latitude == null ||
+        longitude == null ||
+        !latitude.isFinite ||
+        !longitude.isFinite ||
+        latitude < -90 ||
+        latitude > 90 ||
+        longitude < -180 ||
+        longitude > 180) {
+      _showMessage('Введите корректные координаты широты и долготы');
+      return;
+    }
+
+    try {
+      await _deviceActions.invokeMethod<void>('openMap', {
+        'latitude': latitude,
+        'longitude': longitude,
+      });
+    } on PlatformException catch (error) {
+      _showMessage(error.message ?? 'Не удалось открыть карту');
+    } on MissingPluginException {
+      _showMessage('Канал открытия карт недоступен');
+    }
+  }
+
+  Future<void> _capturePhoto() async {
+    try {
+      final photo = await _deviceActions.invokeMethod<Uint8List>(
+        'capturePhoto',
+      );
+      if (!mounted || photo == null) return;
+      setState(() {
+        _photoBytes = photo;
+      });
+    } on PlatformException catch (error) {
+      _showMessage(error.message ?? 'Не удалось открыть камеру');
+    } on MissingPluginException {
+      _showMessage('Канал камеры недоступен');
+    }
+  }
+
+  void _showMessage(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final platformName = switch (Theme.of(context).platform) {
+      TargetPlatform.android => 'Android',
+      TargetPlatform.iOS => 'iOS',
+      _ => 'устройство',
+    };
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF2F6F9),
+      appBar: AppBar(
+        title: const Text('Инструменты устройства'),
+        backgroundColor: const Color(0xFFF2F6F9),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'Открыть карту',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 12),
+                      TextField(
+                        controller: _latitudeController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                          signed: true,
+                        ),
+                        decoration: const InputDecoration(
+                          labelText: 'Широта',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      TextField(
+                        controller: _longitudeController,
+                        keyboardType: const TextInputType.numberWithOptions(
+                          decimal: true,
+                          signed: true,
+                        ),
+                        decoration: const InputDecoration(
+                          labelText: 'Долгота',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      FilledButton.icon(
+                        onPressed: _openMap,
+                        icon: const Icon(Icons.map_outlined),
+                        label: const Text('Открыть в приложении карт'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                child: ListTile(
+                  leading: const Icon(Icons.battery_charging_full),
+                  title: Text('Заряд батареи ($platformName)'),
+                  subtitle: Text(_batteryLevel),
+                  trailing: IconButton(
+                    tooltip: 'Обновить заряд',
+                    onPressed: _isLoadingBattery ? null : _loadBatteryLevel,
+                    icon: _isLoadingBattery
+                        ? const SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : const Icon(Icons.refresh),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'Фотография с камеры',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 12),
+                      FilledButton.icon(
+                        onPressed: _capturePhoto,
+                        icon: const Icon(Icons.camera_alt_outlined),
+                        label: const Text('Сделать фото'),
+                      ),
+                      if (_photoBytes case final bytes?) ...[
+                        const SizedBox(height: 12),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.memory(
+                            bytes,
+                            height: 240,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class WifiSSIDIndicator extends StatefulWidget {
+  const WifiSSIDIndicator({super.key});
+
+  @override
+  State<WifiSSIDIndicator> createState() => _WifiSSIDIndicatorState();
+}
+
+class _WifiSSIDIndicatorState extends State<WifiSSIDIndicator>
+    with WidgetsBindingObserver {
+  static const platform = MethodChannel('wifi_channel');
+
+  String wifiSSID = 'Получение Wi-Fi...';
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
+    getWifiSSID();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      getWifiSSID();
+    }
+  }
+
+  Future<void> getWifiSSID() async {
+    if (isLoading) return;
+
+    setState(() {
+      isLoading = true;
+    });
+
+    try {
+      final String result = await platform.invokeMethod('getWifiSSID');
+
+      if (!mounted) return;
+
+      setState(() {
+        wifiSSID = result;
+      });
+    } on PlatformException catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        wifiSSID = e.message ?? 'Ошибка получения Wi-Fi';
+      });
+    } on MissingPluginException {
+      if (!mounted) return;
+
+      setState(() {
+        wifiSSID = 'Method Channel недоступен';
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: false,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        decoration: BoxDecoration(
+          color: const Color(0xFF202B38),
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.12),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.wifi, color: Colors.white, size: 24),
+
+            const SizedBox(width: 12),
+
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text(
+                    'Подключённая Wi-Fi сеть',
+                    style: TextStyle(color: Colors.white70, fontSize: 11),
+                  ),
+
+                  const SizedBox(height: 3),
+
+                  Text(
+                    wifiSSID,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            IconButton(
+              onPressed: isLoading ? null : getWifiSSID,
+              icon: isLoading
+                  ? const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
+                    )
+                  : const Icon(Icons.refresh, color: Colors.white),
+            ),
           ],
         ),
       ),

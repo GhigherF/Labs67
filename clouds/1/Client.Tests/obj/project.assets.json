@@ -935,11 +935,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\LABS67\\labs67\\clouds\\1\\Client.Tests\\Client.Tests.csproj",
+      "projectUniqueName": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Client.Tests\\Client.Tests.csproj",
       "projectName": "Client.Tests",
-      "projectPath": "C:\\LABS67\\labs67\\clouds\\1\\Client.Tests\\Client.Tests.csproj",
+      "projectPath": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Client.Tests\\Client.Tests.csproj",
       "packagesPath": "C:\\Users\\ghigh\\.nuget\\packages\\",
-      "outputPath": "C:\\LABS67\\labs67\\clouds\\1\\Client.Tests\\obj\\",
+      "outputPath": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Client.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ghigh\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -955,8 +955,8 @@
           "framework": "net11.0",
           "targetAlias": "net11.0",
           "projectReferences": {
-            "C:\\LABS67\\labs67\\clouds\\1\\Client\\Client.csproj": {
-              "projectPath": "C:\\LABS67\\labs67\\clouds\\1\\Client\\Client.csproj"
+            "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Client\\Client.csproj": {
+              "projectPath": "C:\\LABS67\\labs67\\clouds\\4\\3\\1\\Client\\Client.csproj"
             }
           }
         }

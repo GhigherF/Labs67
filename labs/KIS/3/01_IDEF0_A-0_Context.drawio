@@ -1,0 +1,68 @@
+<mxfile host="Electron" agent="draw.io">
+  <diagram name="A-0 Контекст" id="page-1">
+    <mxGraphModel dx="901" dy="586" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;align=center;verticalAlign=middle;fontStyle=0;" value="&amp;nbsp;правила оказания&amp;nbsp;&lt;div&gt;медицинской помощи&amp;nbsp;&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="45" width="250" x="460" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;fontFamily=Arial;fontSize=14;strokeWidth=2;fontStyle=0;fontSize=16;align=center;verticalAlign=middle;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Принять и зарегистрировать&lt;br&gt;пациента&lt;br&gt;&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="140" width="270" x="560" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="704.5" y="282.5" as="sourcePoint" />
+            <mxPoint x="704.5" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=14;labelBackgroundColor=#FFFFFF;fontFamily=Times New Roman;" value="Жалобы">
+          <mxGeometry relative="1" x="0.0909" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="450" y="370" as="sourcePoint" />
+            <mxPoint x="560" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=14;labelBackgroundColor=#FFFFFF;fontFamily=Times New Roman;" value="Регистрационная запись;&lt;br&gt;талон или направление к специалисту">
+          <mxGeometry relative="1" x="0.0021" y="-29" as="geometry">
+            <mxPoint y="-59" as="offset" />
+            <mxPoint x="840" y="399.5" as="sourcePoint" />
+            <mxPoint x="1080" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=14;labelBackgroundColor=#FFFFFF;fontFamily=Times New Roman;" value="Регистратор; медицинская информационная система;&lt;br&gt;рабочее место и оборудование">
+          <mxGeometry relative="1" x="-1" y="14" as="geometry">
+            <mxPoint x="4" y="10" as="offset" />
+            <mxPoint x="694.5" y="590" as="sourcePoint" />
+            <mxPoint x="694.5" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TDcoE1NA_MImbhRzNHpQ-11" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="270" as="sourcePoint" />
+            <mxPoint x="580" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TDcoE1NA_MImbhRzNHpQ-12" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="280" as="sourcePoint" />
+            <mxPoint x="810" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TDcoE1NA_MImbhRzNHpQ-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;align=center;verticalAlign=middle;fontStyle=0;" value="График приёма" vertex="1">
+          <mxGeometry height="45" width="150" x="630" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="TDcoE1NA_MImbhRzNHpQ-15" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;align=center;verticalAlign=middle;fontStyle=0;" value="Требования к защиет данных" vertex="1">
+          <mxGeometry height="45" width="150" x="730" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="TDcoE1NA_MImbhRzNHpQ-16" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=12;labelBackgroundColor=#FFFFFF;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Сведения о пациенте&lt;/font&gt;">
+          <mxGeometry relative="1" y="10" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="400" y="440" as="sourcePoint" />
+            <mxPoint x="560" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

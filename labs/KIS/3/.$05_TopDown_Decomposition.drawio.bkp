@@ -1,0 +1,75 @@
+<mxfile host="Electron" agent="draw.io">
+  <diagram name="Декомпозиция сверху вниз" id="page-1">
+    <mxGraphModel dx="1497" dy="974" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;strokeWidth=2;fontStyle=0;align=center;verticalAlign=middle;" value="Рассчитать число рабочих дней&lt;br&gt;в периоде" vertex="1">
+          <mxGeometry height="100" width="400" x="500" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;align=center;verticalAlign=middle;" value="Подготовить данные:&lt;br&gt;N = конец − начало + 1;&lt;br&gt;p = MOD(начало − A, 4)" vertex="1">
+          <mxGeometry height="130" width="350" x="70" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;align=center;verticalAlign=middle;" value="Учесть полные циклы 2/2:&lt;br&gt;q = N DIV 4;&lt;br&gt;базовый результат = 2q" vertex="1">
+          <mxGeometry height="130" width="350" x="525" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;fontFamily=Times New Roman;fontSize=16;align=center;verticalAlign=middle;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Учесть остаток r = N MOD 4:&lt;br&gt;проверить не более трёх дней&lt;br&gt;по формуле индикаторов&lt;/font&gt;" vertex="1">
+          <mxGeometry height="130" width="350" x="980" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#000000;fillColor=#FFFFFF;fontColor=#000000;fontFamily=Times New Roman;fontSize=14;align=center;verticalAlign=middle;" value="Сложить базовый результат&lt;br&gt;и рабочие дни остатка;&lt;br&gt;вывести ответ" vertex="1">
+          <mxGeometry height="110" width="350" x="525" y="665" as="geometry" />
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="280" />
+              <mxPoint x="245" y="280" />
+            </Array>
+            <mxPoint x="700" y="215" as="sourcePoint" />
+            <mxPoint x="245" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="215" as="sourcePoint" />
+            <mxPoint x="700" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="10" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="280" />
+              <mxPoint x="1155" y="280" />
+            </Array>
+            <mxPoint x="700" y="215" as="sourcePoint" />
+            <mxPoint x="1155" y="355" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="11" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="245" y="720" />
+            </Array>
+            <mxPoint x="245" y="485" as="sourcePoint" />
+            <mxPoint x="525" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="12" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="485" as="sourcePoint" />
+            <mxPoint x="700" y="665" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="13" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=block;endFill=1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1155" y="720" />
+            </Array>
+            <mxPoint x="1155" y="485" as="sourcePoint" />
+            <mxPoint x="875" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

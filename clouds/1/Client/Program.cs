@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -16,7 +18,7 @@ public class Program
     public static readonly HttpClient httpClient = new HttpClient
     {
         BaseAddress = new Uri("http://localhost:5230/"),
-        Timeout = TimeSpan.FromSeconds(3),
+        Timeout = TimeSpan.FromSeconds(25),
     };
 
     public static readonly JsonSerializerOptions jsonOptions = new JsonSerializerOptions
@@ -24,11 +26,22 @@ public class Program
         PropertyNameCaseInsensitive = true,
     };
 
+    public static TimeSpan ClientClockOffset { get; private set; } = TimeSpan.FromSeconds(7);
+
+    public static DateTime ClientNowUtc => DateTime.UtcNow + ClientClockOffset;
+
     public static void Main(string[] args)
     {
         while (true)
         {
             Console.WriteLine("=== СИСТЕМА УПРАВЛЕНИЯ ОТЕЛЕМ ===");
+            Console.WriteLine(
+                $"Локальное время клиента: {ClientNowUtc:yyyy-MM-dd HH:mm:ss.fff} UTC"
+            );
+            Console.WriteLine(
+                $"Искусственное смещение: {ClientClockOffset.TotalSeconds:+0.###;-0.###;0} секунд"
+            );
+            Console.WriteLine("--------------------------------");
             Console.WriteLine("1. Посмотреть список номеров");
             Console.WriteLine("2. Посмотреть список гостей");
             Console.WriteLine("3. Добавить нового гостя");
@@ -37,6 +50,10 @@ public class Program
             Console.WriteLine("6. Посмотреть список бронирований");
             Console.WriteLine("7. Оплатить бронирование");
             Console.WriteLine("8. Отменить бронирование");
+            Console.WriteLine("9. Показать локальное время клиента");
+            Console.WriteLine("10. Настроить смещение часов клиента");
+            Console.WriteLine("11. Синхронизировать время с сервером");
+            Console.WriteLine("12. Эксперимент: оплата бронирования");
             Console.WriteLine("0. Выход");
             Console.WriteLine("================================");
             Console.Write("Выберите действие: ");
@@ -71,6 +88,18 @@ public class Program
                     case "8":
                         CancelBooking();
                         break;
+                    case "9":
+                        ShowClientTime();
+                        break;
+                    case "10":
+                        ConfigureClockOffset();
+                        break;
+                    case "11":
+                        SynchronizeTime();
+                        break;
+                    case "12":
+                        RunPaymentExperiment();
+                        break;
                     case "0":
                         return;
                     default:
@@ -86,6 +115,148 @@ public class Program
             Console.WriteLine("\nНажмите Enter, чтобы продолжить...");
             Console.ReadLine();
         }
+    }
+
+    public static void ShowClientTime()
+    {
+        Console.WriteLine("\n ЛОКАЛЬНОЕ ВРЕМЯ КЛИЕНТА");
+        Console.WriteLine("----------------------------------------");
+        Console.WriteLine($"System UTC time: {DateTime.UtcNow:O}");
+        Console.WriteLine(
+            $"Client offset:   {ClientClockOffset.TotalSeconds:+0.###;-0.###;0} seconds"
+        );
+        Console.WriteLine($"Client time:     {ClientNowUtc:O}");
+        Console.WriteLine("----------------------------------------");
+    }
+
+    public static void ConfigureClockOffset()
+    {
+        Console.WriteLine("\n НАСТРОЙКА ЧАСОВ КЛИЕНТА");
+        Console.WriteLine(
+            $"Текущее смещение: {ClientClockOffset.TotalSeconds:+0.###;-0.###;0} секунд"
+        );
+        Console.Write("Введите новое смещение в секундах (например, 7 или -3): ");
+
+        var input = Console.ReadLine()?.Trim();
+
+        if (
+            !double.TryParse(input, NumberStyles.Float, CultureInfo.CurrentCulture, out var seconds)
+            && !double.TryParse(
+                input,
+                NumberStyles.Float,
+                CultureInfo.InvariantCulture,
+                out seconds
+            )
+        )
+        {
+            Console.WriteLine("Некорректное значение смещения.");
+            return;
+        }
+
+        if (double.IsNaN(seconds) || double.IsInfinity(seconds) || Math.Abs(seconds) > 86400)
+        {
+            Console.WriteLine("Смещение должно находиться в диапазоне от -86400 до 86400 секунд.");
+            return;
+        }
+
+        ClientClockOffset = TimeSpan.FromSeconds(seconds);
+
+        Console.WriteLine("Смещение часов клиента изменено.");
+        Console.WriteLine(
+            $"Client offset: {ClientClockOffset.TotalSeconds:+0.###;-0.###;0} seconds"
+        );
+        Console.WriteLine($"Local time: {ClientNowUtc:O}");
+    }
+
+    public static void SynchronizeTime()
+    {
+        Console.WriteLine("\n СИНХРОНИЗАЦИЯ ВРЕМЕНИ");
+        Console.WriteLine(
+            $"Client offset before synchronization: {ClientClockOffset.TotalSeconds:+0.###;-0.###;0} seconds"
+        );
+
+        var localRequestTime = ClientNowUtc;
+
+        Console.WriteLine($"Local time before request: {localRequestTime:O}");
+
+        var stopwatch = Stopwatch.StartNew();
+
+        try
+        {
+            using var response = httpClient.GetAsync("api/time").Result;
+
+            stopwatch.Stop();
+
+            var responseTime = ClientNowUtc;
+            var rtt = stopwatch.Elapsed;
+
+            Console.WriteLine($"Request time:  {localRequestTime:O}");
+            Console.WriteLine($"Response time: {responseTime:O}");
+            Console.WriteLine($"RTT: {rtt.TotalMilliseconds:F2} ms");
+            Console.WriteLine(
+                $"Estimated network delay (RTT / 2): {rtt.TotalMilliseconds / 2:F2} ms"
+            );
+
+            if (!response.IsSuccessStatusCode)
+            {
+                HandleHttpResponseError(response);
+                Console.WriteLine("Синхронизация не выполнена: сервер вернул ошибку.");
+                return;
+            }
+
+            using var document = JsonDocument.Parse(response.Content.ReadAsStringAsync().Result);
+
+            if (
+                !document.RootElement.TryGetProperty("serverTime", out var serverTimeElement)
+                || serverTimeElement.ValueKind != JsonValueKind.String
+                || !serverTimeElement.TryGetDateTime(out var serverTime)
+            )
+            {
+                Console.WriteLine("Ответ сервера не содержит корректного поля serverTime.");
+                Console.WriteLine("Ожидаемый формат: { \"serverTime\": \"2026-10-13T14:30:00Z\" }");
+                return;
+            }
+
+            serverTime = NormalizeUtc(serverTime);
+
+            var estimatedMidpoint = localRequestTime + TimeSpan.FromTicks(rtt.Ticks / 2);
+            var calculatedOffset = serverTime - estimatedMidpoint;
+            var correctedTime = responseTime + calculatedOffset;
+
+            Console.WriteLine();
+            Console.WriteLine("РЕЗУЛЬТАТЫ СИНХРОНИЗАЦИИ");
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine($"Local time:          {responseTime:O}");
+            Console.WriteLine($"Server time:         {serverTime:O}");
+            Console.WriteLine($"Estimated midpoint:  {estimatedMidpoint:O}");
+            Console.WriteLine(
+                $"Calculated offset:   {calculatedOffset.TotalMilliseconds:+0.###;-0.###;0} ms"
+            );
+            Console.WriteLine($"Corrected time:      {correctedTime:O}");
+            Console.WriteLine("----------------------------------------");
+
+            ClientClockOffset += calculatedOffset;
+
+            Console.WriteLine(
+                $"Updated client offset: {ClientClockOffset.TotalMilliseconds:+0.###;-0.###;0} ms"
+            );
+            Console.WriteLine($"Client time after correction: {ClientNowUtc:O}");
+        }
+        catch (Exception ex)
+        {
+            stopwatch.Stop();
+            HandleException(ex, "синхронизации времени");
+        }
+    }
+
+    private static DateTime NormalizeUtc(DateTime value)
+    {
+        return value.Kind switch
+        {
+            DateTimeKind.Utc => value,
+            DateTimeKind.Local => value.ToUniversalTime(),
+            _ => DateTime.SpecifyKind(value, DateTimeKind.Utc),
+        };
     }
 
     public static void HandleException(Exception ex, string context = "")
@@ -113,12 +284,12 @@ public class Program
                 break;
 
             case TaskCanceledException:
-                Console.WriteLine($"Ошибка: Превышено время ожидания ответа от сервера (Timeout).");
+                Console.WriteLine("Ошибка: Превышено время ожидания ответа от сервера (Timeout).");
                 break;
 
             case FormatException:
                 Console.WriteLine(
-                    $"Некорректные входные данные: неверный формат числа, даты или GUID."
+                    "Некорректные входные данные: неверный формат числа, даты или GUID."
                 );
                 break;
 
@@ -139,15 +310,18 @@ public class Program
                     "Ошибка (404): Запрашиваемый объект или эндпоинт не найден на сервере."
                 );
                 break;
+
             case HttpStatusCode.BadRequest:
                 var error = TryReadErrorResponse(response);
                 Console.WriteLine(
                     $"400 Bad Request: {error ?? "Переданы некорректные входные данные или выполнена недопустимая операция."}"
                 );
                 break;
+
             case HttpStatusCode.InternalServerError:
                 Console.WriteLine("Ошибка 500: Внутренняя ошибка сервера.");
                 break;
+
             default:
                 Console.WriteLine(
                     $"Ошибка ответа сервера: {(int)response.StatusCode} {response.ReasonPhrase}"
@@ -174,10 +348,12 @@ public class Program
         try
         {
             var response = httpClient.GetAsync("api/rooms").Result;
+
             if (response.IsSuccessStatusCode)
             {
                 return response.Content.ReadFromJsonAsync<List<Room>>(jsonOptions).Result;
             }
+
             HandleHttpResponseError(response);
             return null;
         }
@@ -193,10 +369,12 @@ public class Program
         try
         {
             var response = httpClient.GetAsync("api/guests").Result;
+
             if (response.IsSuccessStatusCode)
             {
                 return response.Content.ReadFromJsonAsync<List<Guest>>(jsonOptions).Result;
             }
+
             HandleHttpResponseError(response);
             return null;
         }
@@ -210,6 +388,7 @@ public class Program
     internal static Room? FindRoomByNumber(IEnumerable<Room> rooms, string inputNumber)
     {
         var cleanInput = inputNumber.Trim();
+
         if (string.IsNullOrWhiteSpace(cleanInput))
             return null;
 
@@ -224,6 +403,7 @@ public class Program
     internal static Guest? FindGuestByNameOrIndex(IEnumerable<Guest> guests, string input)
     {
         var clean = input.Trim();
+
         if (string.IsNullOrWhiteSpace(clean))
             return null;
 
@@ -241,6 +421,7 @@ public class Program
         Console.WriteLine("----------------------------------------------------------------------");
 
         var rooms = GetRooms();
+
         if (rooms == null || rooms.Count == 0)
         {
             Console.WriteLine("Записи не найдены или произошла ошибка подключения.");
@@ -261,6 +442,7 @@ public class Program
         Console.WriteLine("----------------------------------------------------------------------");
 
         var guests = GetGuests();
+
         if (guests == null || guests.Count == 0)
         {
             Console.WriteLine("Записи не найдены или произошла ошибка подключения.");
@@ -277,6 +459,7 @@ public class Program
     {
         Console.WriteLine("\n ДОБАВЛЕНИЕ НОВОГО ГОСТЯ:");
         Console.Write("Введите ФИО гостя: ");
+
         var fullName = Console.ReadLine()?.Trim();
 
         if (string.IsNullOrWhiteSpace(fullName))
@@ -293,7 +476,9 @@ public class Program
             if (response.IsSuccessStatusCode)
             {
                 var createdGuest = response.Content.ReadFromJsonAsync<Guest>(jsonOptions).Result;
-                Console.WriteLine($"Гость успешно добавлен!");
+
+                Console.WriteLine("Гость успешно добавлен!");
+
                 if (createdGuest != null)
                 {
                     Console.WriteLine($"ID: {createdGuest.Id} | ФИО: {createdGuest.FullName}");
@@ -313,13 +498,14 @@ public class Program
     internal static void CheckAvailability()
     {
         var rooms = GetRooms();
+
         if (rooms == null || rooms.Count == 0)
             return;
 
         Console.Write("Введите номер комнаты (например, 101): ");
         var roomInput = Console.ReadLine() ?? "";
-
         var room = FindRoomByNumber(rooms, roomInput);
+
         if (room == null)
         {
             Console.WriteLine($"Отсутствующий объект: Номер '{roomInput}' не найден.");
@@ -327,6 +513,7 @@ public class Program
         }
 
         Console.Write("Дата заезда (ГГГГ-ММ-ДД): ");
+
         if (!DateTime.TryParse(Console.ReadLine(), out var checkIn))
         {
             Console.WriteLine("Некорректные входные данные: некорректный формат даты заезда.");
@@ -334,6 +521,7 @@ public class Program
         }
 
         Console.Write("Дата выезда (ГГГГ-ММ-ДД): ");
+
         if (!DateTime.TryParse(Console.ReadLine(), out var checkOut))
         {
             Console.WriteLine("Некорректные входные данные: некорректный формат даты выезда.");
@@ -344,6 +532,7 @@ public class Program
         {
             var url =
                 $"api/check-availability?roomId={room.Id}&checkIn={checkIn:yyyy-MM-dd}&checkOut={checkOut:yyyy-MM-dd}";
+
             var response = httpClient.GetAsync(url).Result;
 
             if (response.IsSuccessStatusCode)
@@ -351,6 +540,7 @@ public class Program
                 var result = response
                     .Content.ReadFromJsonAsync<AvailabilityResponse>(jsonOptions)
                     .Result;
+
                 if (result != null && result.IsAvailable)
                 {
                     Console.WriteLine($"Номер {room.RoomNumber} СВОБОДЕН на указанные даты.");
@@ -377,7 +567,9 @@ public class Program
         var guests = GetGuests();
 
         if (rooms == null || rooms.Count == 0 || guests == null || guests.Count == 0)
+        {
             return;
+        }
 
         Console.Write("Введите номер комнаты (например, 101): ");
         var roomInput = Console.ReadLine() ?? "";
@@ -400,6 +592,7 @@ public class Program
         }
 
         Console.Write("Дата заезда (ГГГГ-ММ-ДД): ");
+
         if (!DateTime.TryParse(Console.ReadLine(), out var checkIn))
         {
             Console.WriteLine("Некорректные входные данные: формат даты.");
@@ -407,6 +600,7 @@ public class Program
         }
 
         Console.Write("Дата выезда (ГГГГ-ММ-ДД): ");
+
         if (!DateTime.TryParse(Console.ReadLine(), out var checkOut))
         {
             Console.WriteLine("Некорректные входные данные: формат даты.");
@@ -423,7 +617,9 @@ public class Program
                 var result = response
                     .Content.ReadFromJsonAsync<CreateBookingResponse>(jsonOptions)
                     .Result;
-                Console.WriteLine($"Бронирование успешно создано!");
+
+                Console.WriteLine("Бронирование успешно создано!");
+
                 if (result?.Booking != null)
                 {
                     Console.WriteLine($"ID бронирования: {result.Booking.Id}");
@@ -457,6 +653,7 @@ public class Program
         try
         {
             var response = httpClient.GetAsync("api/bookings").Result;
+
             if (!response.IsSuccessStatusCode)
             {
                 HandleHttpResponseError(response);
@@ -492,6 +689,7 @@ public class Program
     {
         Console.WriteLine("\n ОПЛАТА БРОНИРОВАНИЯ:");
         Console.Write("Введите GUID бронирования для оплаты: ");
+
         if (!Guid.TryParse(Console.ReadLine(), out var bookingId))
         {
             Console.WriteLine("Некорректные входные данные: неверный формат GUID.");
@@ -499,6 +697,7 @@ public class Program
         }
 
         Console.Write("Введите сумму оплаты: ");
+
         if (!decimal.TryParse(Console.ReadLine(), out var amount))
         {
             Console.WriteLine("Некорректные входные данные: некорректное числовое значение суммы.");
@@ -515,6 +714,7 @@ public class Program
                 var result = response
                     .Content.ReadFromJsonAsync<PayBookingResponse>(jsonOptions)
                     .Result;
+
                 Console.WriteLine("Оплата прошла успешно!");
 
                 if (result?.Change is decimal change && change > 0)
@@ -533,10 +733,124 @@ public class Program
         }
     }
 
+    internal static void RunPaymentExperiment()
+    {
+        Console.WriteLine("\n ЭКСПЕРИМЕНТ: ОПЛАТА БРОНИРОВАНИЯ");
+        Console.Write("Введите GUID бронирования для эксперимента: ");
+
+        if (!Guid.TryParse(Console.ReadLine(), out var bookingId))
+        {
+            Console.WriteLine("Некорректные входные данные: неверный формат GUID.");
+            return;
+        }
+
+        try
+        {
+            Console.WriteLine("\n1. Получение списка бронирований...");
+            using var bookingsResponse = httpClient.GetAsync("api/bookings").Result;
+
+            if (!bookingsResponse.IsSuccessStatusCode)
+            {
+                HandleHttpResponseError(bookingsResponse);
+                return;
+            }
+
+            var bookings = bookingsResponse
+                .Content.ReadFromJsonAsync<List<Booking>>(jsonOptions)
+                .Result;
+
+            var booking = bookings?.FirstOrDefault(b => b.Id == bookingId);
+
+            if (booking == null)
+            {
+                Console.WriteLine("Бронирование с указанным GUID не найдено.");
+                return;
+            }
+
+            Console.WriteLine($"Текущий статус: {FormatStatus(booking.Status)}");
+            Console.WriteLine($"Сумма бронирования: {booking.TotalPrice:C2}");
+
+            if (booking.Status != BookingStatus.Created)
+            {
+                Console.WriteLine(
+                    "Эксперимент остановлен: бронирование должно иметь статус Created."
+                );
+                Console.WriteLine(
+                    "Для повторного запуска используй GUID другого бронирования со статусом Created."
+                );
+                return;
+            }
+
+            Console.WriteLine("\n2. Отправка запроса на оплату...");
+            var paymentRequest = new PayBookingRequest(booking.TotalPrice);
+
+            using var paymentResponse = httpClient
+                .PostAsJsonAsync($"api/bookings/{bookingId}/pay", paymentRequest)
+                .Result;
+
+            Console.WriteLine(
+                $"Ответ оплаты: {(int)paymentResponse.StatusCode} {paymentResponse.ReasonPhrase}"
+            );
+
+            if (paymentResponse.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Запрос оплаты завершился успешно.");
+            }
+            else
+            {
+                HandleHttpResponseError(paymentResponse);
+                Console.WriteLine(
+                    "Ошибка ожидаема, если на сервере включена искусственная ошибка оплаты."
+                );
+            }
+
+            Console.WriteLine("\n3. Повторное получение бронирований для проверки статуса...");
+            using var verificationResponse = httpClient.GetAsync("api/bookings").Result;
+
+            if (!verificationResponse.IsSuccessStatusCode)
+            {
+                HandleHttpResponseError(verificationResponse);
+                return;
+            }
+
+            var updatedBookings = verificationResponse
+                .Content.ReadFromJsonAsync<List<Booking>>(jsonOptions)
+                .Result;
+
+            var updatedBooking = updatedBookings?.FirstOrDefault(b => b.Id == bookingId);
+
+            if (updatedBooking == null)
+            {
+                Console.WriteLine("После операции бронирование не найдено.");
+                return;
+            }
+
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine($"GUID: {updatedBooking.Id}");
+            Console.WriteLine($"Статус после запроса: {FormatStatus(updatedBooking.Status)}");
+
+            if (updatedBooking.Status == BookingStatus.Paid)
+            {
+                Console.WriteLine("Статус изменён на Paid.");
+            }
+            else
+            {
+                Console.WriteLine("Статус бронирования не изменился.");
+            }
+
+            Console.WriteLine("----------------------------------------");
+        }
+        catch (Exception ex)
+        {
+            HandleException(ex, "эксперименте оплаты бронирования");
+        }
+    }
+
     internal static void CancelBooking()
     {
         Console.WriteLine("\n ОТМЕНА БРОНИРОВАНИЯ:");
         Console.Write("Введите GUID бронирования для отмены: ");
+
         if (!Guid.TryParse(Console.ReadLine(), out var bookingId))
         {
             Console.WriteLine("Некорректные входные данные: неверный формат GUID.");
@@ -549,6 +863,7 @@ public class Program
         try
         {
             var dto = new CancelBookingRequest(reason);
+
             var response = httpClient
                 .PostAsJsonAsync($"api/bookings/{bookingId}/cancel", dto)
                 .Result;
@@ -558,7 +873,9 @@ public class Program
                 var result = response
                     .Content.ReadFromJsonAsync<BookingCancelledEvent>(jsonOptions)
                     .Result;
+
                 Console.WriteLine("Бронирование успешно отменено!");
+
                 if (result != null)
                 {
                     Console.WriteLine($"Причина: {result.Reason}");
